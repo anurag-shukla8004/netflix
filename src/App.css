@@ -510,6 +510,25 @@ h5 {
   border-radius: 50px;
 }
 
+/* Trending Movies */
+.trendingContainer {
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.trendingMoviesList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 100%;
+  background-color: #00008b;
+  color: #fff;
+  margin: 0 15px;
+  font-size: 4em;
+}
 /* Media style */
 @media only screen and (max-width: 900px) {
   .searchbox {
@@ -581,8 +600,5 @@ h5 {
     color: #fff;
     font-size: small;
     font-weight: 500;
-  }
-  .showcase {
-    height: 100vh !important;
   }
 }
