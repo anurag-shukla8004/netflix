@@ -1,33 +1,38 @@
 import Carousel from 'react-elastic-carousel';
 import React from 'react';
+import { connect } from 'react-redux';
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
-  { width: 550, itemsToShow: 2 },
-  { width: 768, itemsToShow: 3 },
-  { width: 1200, itemsToShow: 4 },
+  { width: 550, itemsToShow: 3 },
+  { width: 768, itemsToShow: 4 },
+  { width: 1200, itemsToShow: 7 },
 ];
 
-function trendingMovies() {
+function TrendingMovies({ MovieList }) {
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>
-        Example to setup your carousel in react
-      </h1>
+      <h1 style={{ textAlign: 'left' }}>Trending movies</h1>
       <div className="trendingContainer">
         <Carousel breakPoints={breakPoints}>
-          <div className="trendingMoviesList">One</div>
-          <div className="trendingMoviesList">Two</div>
-          <div className="trendingMoviesList">Three</div>
-          <div className="trendingMoviesList">Four</div>
-          <div className="trendingMoviesList">Five</div>
-          <div className="trendingMoviesList">Six</div>
-          <div className="trendingMoviesList">Seven</div>
-          <div className="trendingMoviesList">Eight</div>
+          {MovieList.map((movie, index) => (
+            <div key={index} className="trendingMoviesList">
+              <img className="trendingMoviesImg" src={movie.Poster} alt="" />
+            </div>
+          ))}
+          {MovieList.map((movie, index) => (
+            <div key={index} className="trendingMoviesList">
+              <img className="trendingMoviesImg" src={movie.Poster} alt="" />
+            </div>
+          ))}
         </Carousel>
       </div>
     </div>
   );
 }
 
-export default trendingMovies;
+const mapStateToProps = (state) => ({
+  MovieList: state.trendingMovieArr,
+});
+
+export default connect(mapStateToProps, {})(TrendingMovies);

@@ -6,7 +6,7 @@ function movieDetails() {
     <div>
       <Link to="/">
         <div className="logo" style={{ height: '12px' }}>
-          <img src="https://i.ibb.co/r5krrdz/logo.png" />
+          <img src="https://i.ibb.co/r5krrdz/logo.png" alt="noImage" />
         </div>
       </Link>
 

@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function sinIn() {
+function SinIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [sinInValidation, setSinInValidation] = useState(false);
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const validationHandler = () => {
+    let data = JSON.parse(localStorage.getItem('data'));
+    // console.log(data.Email, 'sine logn');
+    if (data.Email === email) {
+      console.log('succesful log');
+    } else {
+      setSinInValidation(true);
+      setTimeout(function () {
+        setSinInValidation(false);
+      }, 2000);
+    }
+    if (data.Password === password) {
+      console.log('helo');
+    } else {
+      setSinInValidation(true);
+      setTimeout(function () {
+        setSinInValidation(false);
+      }, 2000);
+    }
+  };
+
   return (
     <div>
       <header style={{ height: '100vh' }} className="showcase">
@@ -13,33 +42,49 @@ function sinIn() {
 
         <div className="showcase-content">
           <div className="formm">
-            <form>
+            <form
+              onSubmit={(e) => {
+                onSubmit(e);
+              }}
+            >
               <h1>Sign In</h1>
               <div className="info">
                 <input
                   className="email"
                   type="email"
                   placeholder="Email or phone number"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
                 />
                 <br />
                 <input
-                  className="email"
+                  className="password"
                   type="password"
                   placeholder="Password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
                 />
                 <p
                   class="nameAlert validation"
-                  style={{ display: '', textAlign: 'center' }}
+                  style={
+                    sinInValidation ? { display: 'block' } : { display: 'none' }
+                  }
                 >
                   Enter a correct details
                 </p>
               </div>
-              <div className="btn">
-                <button className="btn-primary" type="submit">
-                  Sign In
-                </button>
-              </div>
             </form>
+            <div className="btn">
+              <button
+                className="btn-primary"
+                type="submit"
+                onClick={() => {
+                  validationHandler();
+                }}
+              >
+                Sign In
+              </button>
+            </div>
           </div>
 
           <div className="signup">
@@ -50,7 +95,7 @@ function sinIn() {
             <p>
               This page is protected by Google reCAPTCHA to ensure you're not a
               bot.
-              <a href="#">Learn more.</a>
+              <Link to="#">Learn more.</Link>
             </p>
           </div>
         </div>
@@ -59,4 +104,4 @@ function sinIn() {
   );
 }
 
-export default sinIn;
+export default SinIn;
