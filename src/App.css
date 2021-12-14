@@ -275,6 +275,9 @@ img {
   background-color: #1e1b26;
   margin: 60px auto 0 auto;
   border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
 }
 .menu {
   position: absolute;
@@ -308,6 +311,7 @@ img {
   display: block;
   border-radius: 4px;
   bottom: 38px;
+  width: 312px;
 }
 
 .text-movie-cont {
