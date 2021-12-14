@@ -32,7 +32,6 @@ const Appname = styled.div`
 
 const MovieImg = styled.img`
   width: 35%;
-
   margin: 10px;
   margin-right: 0px;
 `;
@@ -53,7 +52,7 @@ const SearchInput = styled.input`
   margin-left: 7px;
   overflow: hidden;
   align-items: center;
-  border-radius: 5px;
+  padding-left: 8px;
 `;
 
 function HomePage({ MovieList, getMovieApiCall, movieDetails }) {
