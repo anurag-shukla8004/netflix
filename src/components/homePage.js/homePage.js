@@ -87,7 +87,7 @@ function HomePage({ MovieList, getMovieApiCall, movieDetails }) {
     updateSearchQuery(event.target.value);
     const Timeout = setTimeout(() => {
       fetchData(event.target.value);
-    }, 500);
+    }, 5);
     updatetime(Timeout);
   };
 
