@@ -129,10 +129,10 @@ function HomePage({ MovieList, getMovieApiCall, movieDetails }) {
                     </h5>
                   </div>
                 ) : (
-                  <Link to="/SinInPage">
+                  <Link to="/SinUpPage">
                     <div className="btn">
                       <button className="sinButton" type="submit">
-                        Sign In
+                        Sign Up
                       </button>
                     </div>
                   </Link>

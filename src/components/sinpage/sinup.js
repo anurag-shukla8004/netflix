@@ -131,6 +131,7 @@ function SinUp() {
                 position: 'relative',
                 top: '18px',
                 left: '16px',
+                width: '90%',
               }}
             >
               EC<span style={{ color: '#fff' }}>Flix Movies</span>

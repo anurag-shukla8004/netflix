@@ -24,7 +24,7 @@ function movieDetails({ movie }) {
       </Link>
 
       <div class="container" style={{ maxWidth: '100%' }}>
-        <div class="cellphone-container" style={{ height: '100vh' }}>
+        <div class="cellphone-container">
           <div class="movie">
             <div
               class="movie-img"
