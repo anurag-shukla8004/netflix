@@ -15,6 +15,7 @@ function movieDetails({ movie }) {
               position: 'relative',
               top: '18px',
               left: '16px',
+              width: 'fit-content',
             }}
           >
             EC<span style={{ color: '#fff' }}>Flix Movies</span>

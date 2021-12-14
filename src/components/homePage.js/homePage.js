@@ -51,7 +51,6 @@ const SearchInput = styled.input`
   border: none;
   outline: none;
   margin-left: 7px;
-
   overflow: hidden;
   align-items: center;
   border-radius: 5px;
@@ -160,7 +159,7 @@ function HomePage({ MovieList, getMovieApiCall, movieDetails }) {
                     setProfileShow(false);
                   }}
                 >
-                  X
+                  <i class="fa fa-times" aria-hidden="true"></i>
                 </p>
 
                 <h5 style={{ color: 'indianred' }} className="AccountDetails">
