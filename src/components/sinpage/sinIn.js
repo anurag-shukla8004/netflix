@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SinIn() {
+  const navigator = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [sinInValidation, setSinInValidation] = useState(false);
@@ -11,10 +13,12 @@ function SinIn() {
   };
 
   const validationHandler = () => {
+    let emailBool = false;
+    let passwordBool = false;
     let data = JSON.parse(localStorage.getItem('data'));
-    // console.log(data.Email, 'sine logn');
+
     if (data.Email === email) {
-      console.log('succesful log');
+      emailBool = true;
     } else {
       setSinInValidation(true);
       setTimeout(function () {
@@ -22,12 +26,15 @@ function SinIn() {
       }, 2000);
     }
     if (data.Password === password) {
-      console.log('helo');
+      passwordBool = true;
     } else {
       setSinInValidation(true);
       setTimeout(function () {
         setSinInValidation(false);
       }, 2000);
+    }
+    if (emailBool === true && passwordBool === true) {
+      navigator('/');
     }
   };
 
@@ -36,7 +43,18 @@ function SinIn() {
       <header style={{ height: '100vh' }} className="showcase">
         <Link to="/">
           <div className="logo">
-            <img src="https://i.ibb.co/r5krrdz/logo.png" />
+            <div
+              style={{
+                color: 'red',
+                fontSize: '1.6rem',
+                fontWeight: 'bold',
+                position: 'relative',
+                top: '18px',
+                left: '16px',
+              }}
+            >
+              EC<span style={{ color: '#fff' }}>Flix Movies</span>
+            </div>
           </div>
         </Link>
 

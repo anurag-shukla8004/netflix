@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SinUp() {
+  const navigator = useNavigate();
+
   // Input Fields
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -17,13 +19,6 @@ function SinUp() {
   const [confirmPasswordValidation, setConfirmPasswordValidation] =
     useState(false);
   let data = [];
-  if (localStorage.getItem('data')) {
-    data = JSON.parse(localStorage.getItem('data'));
-  } else {
-    data = [];
-
-    localStorage.setItem('data', JSON.stringify(data));
-  }
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -112,20 +107,34 @@ function SinUp() {
         ConfirmPassword: confirmPassword,
       };
       localStorage.setItem('data', JSON.stringify(data));
+
       setName('');
       setEmail('');
       setPhone('');
       setPassword('');
       setConfirmPassword('');
+
+      navigator('/SinInPage');
     }
   };
 
   return (
     <div>
-      <header style={{ height: '100%' }} className="showcase">
+      <header style={{ height: '145%' }} className="showcase">
         <Link to="/">
           <div className="logo">
-            <img src="https://i.ibb.co/r5krrdz/logo.png" />
+            <div
+              style={{
+                color: 'red',
+                fontSize: '1.6rem',
+                fontWeight: 'bold',
+                position: 'relative',
+                top: '18px',
+                left: '16px',
+              }}
+            >
+              EC<span style={{ color: '#fff' }}>Flix Movies</span>
+            </div>
           </div>
         </Link>
 

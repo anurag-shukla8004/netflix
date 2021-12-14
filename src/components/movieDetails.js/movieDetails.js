@@ -1,23 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function movieDetails() {
+function movieDetails({ movie }) {
   return (
     <div>
       <Link to="/">
         <div className="logo" style={{ height: '12px' }}>
-          <img src="https://i.ibb.co/r5krrdz/logo.png" alt="noImage" />
+          <div
+            style={{
+              color: 'red',
+              fontSize: '1.6rem',
+              fontWeight: 'bold',
+              position: 'relative',
+              top: '18px',
+              left: '16px',
+            }}
+          >
+            EC<span style={{ color: '#fff' }}>Flix Movies</span>
+          </div>
         </div>
       </Link>
 
-      <div class="container">
-        <div class="cellphone-container">
+      <div class="container" style={{ maxWidth: '100%' }}>
+        <div class="cellphone-container" style={{ height: '100vh' }}>
           <div class="movie">
-            <div class="movie-img"></div>
+            <div
+              class="movie-img"
+              style={{ backgroundImage: `url(${movie.Poster})` }}
+            ></div>
             <div class="text-movie-cont">
               <div class="mr-grid">
                 <div class="col1">
-                  <h1>Interstellar</h1>
+                  <h1>{movie.Title}</h1>
                   <ul class="movie-gen">
                     <li>PG-13 /</li>
                     <li>2h 49min /</li>
@@ -27,7 +42,7 @@ function movieDetails() {
               </div>
               <div class="mr-grid summary-row">
                 <div class="col2">
-                  <h5>SUMMARY</h5>
+                  <h5>{movie.Year}</h5>
                 </div>
                 <div class="col2">
                   <ul class="movie-likes">
@@ -53,9 +68,7 @@ function movieDetails() {
               </div>
               <div class="mr-grid actors-row">
                 <div class="col1">
-                  <p class="movie-actors">
-                    Matthew McConaughey, Anne Hathaway, Jessica Chastain
-                  </p>
+                  <p class="movie-actors">{movie.Type}</p>
                 </div>
               </div>
             </div>
@@ -65,5 +78,8 @@ function movieDetails() {
     </div>
   );
 }
+const mapStateToProps = (state) => ({
+  movie: state.movieDetails,
+});
 
-export default movieDetails;
+export default connect(mapStateToProps, {})(movieDetails);

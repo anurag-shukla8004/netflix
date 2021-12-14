@@ -39,7 +39,7 @@ const MovieInfo = styled.span`
 
 const Moviecomponent = (props) => {
   const { Title, Year, Type, Poster } = props.movie;
-  console.log(props.movie);
+
   return (
     <div className="flip-card">
       <div className="flip-card-inner">

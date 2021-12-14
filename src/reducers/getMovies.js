@@ -3,12 +3,13 @@ import { GET_MOVIES_SUCCESS } from '../action/action';
 import { GET_MOVIES_FAILER } from '../action/action';
 import { GET_TRENDING_MOVEIS_REQUEST } from '../action/action';
 import { GET_TRENDING_MOVIES_SUCCESS } from '../action/action';
-import { GET_TRENDING_MOVIES_FAILER } from '../action/action';
+import { GET_TRENDING_MOVIES_FAILER, SEND_DETAILS } from '../action/action';
 
 const incitialState = {
   isLoading: false,
   moviesArr: [],
   trendingMovieArr: [],
+  movieDetails: {},
 };
 
 export const reducer = (state = incitialState, action) => {
@@ -44,6 +45,12 @@ export const reducer = (state = incitialState, action) => {
       return {
         ...state,
         isLoading: false,
+      };
+
+    case SEND_DETAILS:
+      return {
+        ...state,
+        movieDetails: action.payload,
       };
 
     default:

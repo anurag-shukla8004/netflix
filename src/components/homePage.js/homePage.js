@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import MovieComponent from './moviecomponent';
 import { getMovieApiCall } from '../../action/action';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { movieDetails } from '../../action/action';
 export const API_KEY = '6a2d8bb';
 
 const MovieListContainer = styled.div`
@@ -34,17 +36,6 @@ const MovieImg = styled.img`
   margin: 10px;
   margin-right: 0px;
 `;
-// const SearchBox = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   padding: 5px 5px;
-//   background-color: white;
-//   border-radius: 6px;
-//   margin-left: 20px;
-
-//   background-color: #333;
-//   align-items: center;
-// `;
 
 const SearchImg = styled.img`
   width: 35px;
@@ -59,16 +50,31 @@ const SearchInput = styled.input`
   margin-left: 0px;
   border: none;
   outline: none;
-  margin-left: 15px;
-  width: -webkit-fill-avalable;
+  margin-left: 7px;
+
   overflow: hidden;
   align-items: center;
+  border-radius: 5px;
 `;
 
-function HomePage({ MovieList, getMovieApiCall }) {
+function HomePage({ MovieList, getMovieApiCall, movieDetails }) {
   const [searchQuery, updateSearchQuery] = useState('');
   const [time, updatetime] = useState();
   const [profileShow, setProfileShow] = useState(false);
+  let profileSinCheck = false;
+  let data = '';
+
+  const navigator = useNavigate();
+
+  const onClickHandler = (movie) => {
+    movieDetails(movie);
+    navigator('/MovieDetails');
+  };
+
+  if (localStorage.getItem('data')) {
+    profileSinCheck = true;
+    data = JSON.parse(localStorage.getItem('data'));
+  }
 
   useEffect(() => {
     getMovieApiCall();
@@ -92,11 +98,15 @@ function HomePage({ MovieList, getMovieApiCall }) {
       <Container>
         <div className="searchbox">
           <Appname>
-            <MovieImg src="https://i.ibb.co/r5krrdz/logo.png" />
+            <div style={{ color: 'red' }}>EC</div>Flix Movies
           </Appname>
           <div className="imgInputAccountContainer">
             <div className="imgInputContainer">
-              <SearchImg src="https://www.pngitem.com/pimgs/m/559-5590045_search-magnifier-search-icon-no-background-hd-png.png" />
+              <i
+                class="fa fa-search"
+                style={{ color: '#E63E33' }}
+                aria-hidden="true"
+              ></i>
               <SearchInput
                 placeholder="Search Movies"
                 value={searchQuery}
@@ -106,21 +116,29 @@ function HomePage({ MovieList, getMovieApiCall }) {
 
             <div className="Account">
               <div>
-                <h5
-                  onClick={() => {
-                    setProfileShow(true);
-                  }}
-                >
-                  Account
-                </h5>
-
-                <Link to="/SinInPage">
-                  <div className="btn">
-                    <button className="sinButton" type="submit">
-                      Sign In
-                    </button>
+                {profileSinCheck ? (
+                  <div className="profileContainer">
+                    <h5
+                      onClick={() => {
+                        setProfileShow(true);
+                      }}
+                    >
+                      <i
+                        class="fa fa-user-circle fa-2x"
+                        style={{ color: '#E63E33' }}
+                        aria-hidden="true"
+                      ></i>
+                    </h5>
                   </div>
-                </Link>
+                ) : (
+                  <Link to="/SinInPage">
+                    <div className="btn">
+                      <button className="sinButton" type="submit">
+                        Sign In
+                      </button>
+                    </div>
+                  </Link>
+                )}
               </div>
               <div
                 className="AccountDetailsContainer"
@@ -146,21 +164,29 @@ function HomePage({ MovieList, getMovieApiCall }) {
                 </p>
 
                 <h5 style={{ color: 'indianred' }} className="AccountDetails">
-                  Anurag shukla
+                  {data.Name}
                 </h5>
-                <h5 className="AccountDetails">
-                  Anuragshukla8004@gmail.comadfadfasdfas
-                </h5>
-                <h5 className="AccountDetails">+91 6387281864</h5>
+                <h5 className="AccountDetails">{data.Email}</h5>
+                <h5 className="AccountDetails">+91 {data.Number}</h5>
               </div>
             </div>
           </div>
         </div>
+        <div className="welcomeContainer">
+          {!profileSinCheck ? (
+            <h1 className="welocomeHello">Hello </h1>
+          ) : (
+            <h1 className="welcomeHello">Hello {data.Name}</h1>
+          )}
+        </div>
         <MovieListContainer className="ijZktC ">
           <TrendingMovies />
+
           {MovieList?.length ? (
             MovieList.map((movie, index) => (
-              <MovieComponent key={index} movie={movie} />
+              <span onClick={() => onClickHandler(movie)} key={index}>
+                <MovieComponent movie={movie} />
+              </span>
             ))
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -182,4 +208,6 @@ const mapStateToProps = (state) => ({
   MovieList: state.moviesArr,
 });
 
-export default connect(mapStateToProps, { getMovieApiCall })(HomePage);
+export default connect(mapStateToProps, { getMovieApiCall, movieDetails })(
+  HomePage
+);
