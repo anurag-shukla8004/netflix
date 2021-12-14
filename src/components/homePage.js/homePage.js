@@ -89,7 +89,7 @@ function HomePage({ MovieList, getMovieApiCall, movieDetails }) {
     updateSearchQuery(event.target.value);
     const Timeout = setTimeout(() => {
       fetchData(event.target.value);
-    }, 100);
+    }, 500);
     updatetime(Timeout);
   };
 
@@ -174,7 +174,14 @@ function HomePage({ MovieList, getMovieApiCall, movieDetails }) {
         </div>
         <div className="welcomeContainer">
           {!profileSinCheck ? (
-            <h1 className="welocomeHello">Hello </h1>
+            <h1
+              style={{
+                color: '#fe4141',
+              }}
+              className="welocomeHello"
+            >
+              Hello
+            </h1>
           ) : (
             <h1 className="welcomeHello">Hello {data.Name}</h1>
           )}
@@ -195,7 +202,16 @@ function HomePage({ MovieList, getMovieApiCall, movieDetails }) {
                 src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/58c61f47-aa9c-4ed6-a0bc-cddac050cfc8/d7fhxtl-198c37c7-d2ab-4177-b024-69a015df0973.jpg/v1/fill/w_800,h_280,q_75,strp/cute_avengers_by_acberdec_d7fhxtl-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzU4YzYxZjQ3LWFhOWMtNGVkNi1hMGJjLWNkZGFjMDUwY2ZjOFwvZDdmaHh0bC0xOThjMzdjNy1kMmFiLTQxNzctYjAyNC02OWEwMTVkZjA5NzMuanBnIiwiaGVpZ2h0IjoiPD0yODAiLCJ3aWR0aCI6Ijw9ODAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLndhdGVybWFyayJdLCJ3bWsiOnsicGF0aCI6Ilwvd21cLzU4YzYxZjQ3LWFhOWMtNGVkNi1hMGJjLWNkZGFjMDUwY2ZjOFwvYWNiZXJkZWMtNC5wbmciLCJvcGFjaXR5Ijo5NSwicHJvcG9ydGlvbnMiOjAuNDUsImdyYXZpdHkiOiJjZW50ZXIifX0.15mZbq3f83ZFwxsPa3voh7mDw2-AJljXlapgJkQNRzg"
               />
 
-              <h3 style={{ color: '#fff' }}>Film Not Found 404</h3>
+              <h3
+                style={{
+                  textAlign: 'center',
+                  fontSize: '24px',
+                  fontWeight: '600',
+                  color: '#fe4141',
+                }}
+              >
+                Film Not Found 404
+              </h3>
             </div>
           )}
         </MovieListContainer>
